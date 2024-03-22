@@ -4,8 +4,18 @@ using UnityEngine;
 public class EmptyTubeBP
 {
 
-    public string codeNo;
-    public string size;
+    [SerializeField] private string codeNo;
+    public string CodeNo
+    {
+        get { return codeNo; }
+    }
+
+
+    [SerializeField] private string size;
+    public string Size
+    {
+        get { return size; }
+    }
     public float qty;
 
     public EmptyTubeBP(string _codeNo, string _size, float _qty)

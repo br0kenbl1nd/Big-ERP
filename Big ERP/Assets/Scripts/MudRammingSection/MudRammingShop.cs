@@ -19,19 +19,36 @@ public class MudRammingShop : MonoBehaviour
         }
     } //Print Report
 
-    #endregion
-
-    public void FillMud(string codeNo, float qty)
+    /// <summary>
+    /// Add the qty to the mud filled stock
+    /// </summary>
+    public void AddStock(string _codeNo, float qty)
     {
-        foreach(MudFilledTube _mudfilledTube in mudFilledTubes)
+        foreach(MudFilledTube _mudFilledTube in mudFilledTubes)
         {
-            if(_mudfilledTube.codeNo == codeNo)
+            if(_mudFilledTube.CodeNo == _codeNo)
             {
-                _mudfilledTube.qty += qty;
-                godownInventory.UpdateStock(_mudfilledTube.rqdTubeCodeNo, qty);
+                _mudFilledTube.qty += qty;  
             }
         }
+    } //update stock
 
-    } //fill mud
+    /// <summary>
+    /// Remove the qty to the mud filled stock
+    /// </summary>
+    public void RemoveStock(string _codeNo, float qty)
+    {
+        foreach (MudFilledTube _mudFilledTube in mudFilledTubes)
+        {
+            if (_mudFilledTube.CodeNo == _codeNo)
+            {
+                _mudFilledTube.qty -= qty;
+            }
+        }
+    } //update stock
+
+
+    #endregion
+
 
 } //class
