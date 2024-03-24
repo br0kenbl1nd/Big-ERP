@@ -1,19 +1,11 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class GodownInventory : MonoBehaviour
 {
+    public GodownUI godownUI;
 
     public List<EmptyTubeBP> smallTubes = new List<EmptyTubeBP>();
-
-    public Dropdown godownTubeSizeDropDownUI;
-
-    private void Start()
-    {
-        UpdateTubeSizeList();
-    } //start
-
 
     //Contains functions to print report, add a new size of the tube, updates stock of a particular tube
     #region Inventory Functions
@@ -32,7 +24,7 @@ public class GodownInventory : MonoBehaviour
     public void AddNewSizeSmallTube(EmptyTubeBP _emptyTubeBP)
     {
         smallTubes.Add(_emptyTubeBP);
-        UpdateTubeSizeList();
+        godownUI.UpdateTubeSizeList();
     } // Add new size small tube
 
 
@@ -97,25 +89,5 @@ public class GodownInventory : MonoBehaviour
     #endregion
 
     //UI based functions
-    #region UI Functions
-    // Creating the list for drop down menu in add tube stock
-    void UpdateTubeSizeList()
-    {
-        godownTubeSizeDropDownUI.ClearOptions();
-
-        List<string> list_of_tubes = new List<string>();
-
-        list_of_tubes.Add("None");
-
-        foreach(EmptyTubeBP emptyTube in smallTubes)
-        {
-            list_of_tubes.Add(emptyTube.CodeNo);
-        }
-
-        godownTubeSizeDropDownUI.AddOptions(list_of_tubes);
-
-    }
-
-    #endregion
 
 } //class
