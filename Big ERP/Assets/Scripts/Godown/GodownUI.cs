@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class GodownUI : MonoBehaviour
 {
     public GodownInventory godownInventory;
+
+    [Header("Add Tube Stock")]
     public BuyTube buyTube;
 
     public Dropdown godownTubeSizeDropDownUI;
@@ -15,6 +17,9 @@ public class GodownUI : MonoBehaviour
     private float selectedTubeQty;
 
     public GameObject addTubeStockPopUp;
+
+    [Header("Add new size tube stock")]
+    public GameObject addNewTubeSizePopUp;
 
     private void Start()
     {
@@ -54,6 +59,7 @@ public class GodownUI : MonoBehaviour
     public void AddTubeStock()
     {
         buyTube.Buy_Tube(selectedTubeCode, selectedTubeQty);
+        DisableAddTubeStockPopUp();
     } //add tube stock
 
     #endregion
@@ -62,12 +68,28 @@ public class GodownUI : MonoBehaviour
     public void EnableAddTubeStockPopUp()
     {
         addTubeStockPopUp.SetActive(true);
+
+        godownTubeSizeDropDownUI.value = 0;
+
+        godownBuyTubeQtyUI.text = "0";
+
     } //enable add tube stock pop up
 
     public void DisableAddTubeStockPopUp()
     {
         addTubeStockPopUp.SetActive(false);
-    } //enable add tube stock pop up
+    } //enable add tube stock pop up   
+
+    public void EnableAddNewTubeSizePopUp()
+    {
+        addNewTubeSizePopUp.SetActive(true);
+    } //enable add new tube size pop up
+
+    public void DisableAddNewTubeSizePopUp()
+    {
+        addNewTubeSizePopUp.SetActive(false);
+    } //enable add new tube size pop up
+
     #endregion
 
 } //class

@@ -21,7 +21,7 @@ public class GodownInventory : MonoBehaviour
 
 
     // add a new size of inner tube
-    public void AddNewSizeSmallTube(EmptyTubeBP _emptyTubeBP)
+    public void AddNewSizeTube(EmptyTubeBP _emptyTubeBP)
     {
         smallTubes.Add(_emptyTubeBP);
         godownUI.UpdateTubeSizeList();
