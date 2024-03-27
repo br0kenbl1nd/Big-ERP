@@ -5,17 +5,17 @@ public class GodownInventory : MonoBehaviour
 {
     public GodownUI godownUI;
 
-    public List<EmptyTubeBP> smallTubes = new List<EmptyTubeBP>();
+    public List<EmptyTubeBP> emptyTubes = new List<EmptyTubeBP>();
 
     //Contains functions to print report, add a new size of the tube, updates stock of a particular tube
     #region Inventory Functions
     //display all the stock available in the godown
     public void PrintReport()
     {
-        for(int i = 0; i < smallTubes.Count; i++)
+        for(int i = 0; i < emptyTubes.Count; i++)
         {
-            Debug.Log(smallTubes[i].Size);
-            Debug.Log(smallTubes[i].qty);
+            Debug.Log(emptyTubes[i].Size);
+            Debug.Log(emptyTubes[i].qty);
         }
     } //print report
 
@@ -23,7 +23,7 @@ public class GodownInventory : MonoBehaviour
     // add a new size of inner tube
     public void AddNewSizeTube(EmptyTubeBP _emptyTubeBP)
     {
-        smallTubes.Add(_emptyTubeBP);
+        emptyTubes.Add(_emptyTubeBP);
         godownUI.UpdateTubeSizeList();
     } // Add new size small tube
 
@@ -33,7 +33,7 @@ public class GodownInventory : MonoBehaviour
     /// </summary>
     public bool CheckStock(string code_no, float qtyRqd)
     {
-        foreach(EmptyTubeBP smallTube in smallTubes)
+        foreach(EmptyTubeBP smallTube in emptyTubes)
         {
             if(smallTube.CodeNo == code_no)
             {
@@ -61,7 +61,7 @@ public class GodownInventory : MonoBehaviour
     /// </summary>
     public void RemoveStock(string _codeNo, float qty)
     {
-        foreach(EmptyTubeBP smalltube in smallTubes)
+        foreach(EmptyTubeBP smalltube in emptyTubes)
         {
             if(smalltube.CodeNo == _codeNo)
             {
@@ -77,7 +77,7 @@ public class GodownInventory : MonoBehaviour
     /// <param name="qty"></param>
     public void AddStock(string _codeNo, float qty)
     {
-        foreach (EmptyTubeBP smalltube in smallTubes)
+        foreach (EmptyTubeBP smalltube in emptyTubes)
         {
             if (smalltube.CodeNo == _codeNo)
             {
@@ -88,6 +88,5 @@ public class GodownInventory : MonoBehaviour
 
     #endregion
 
-    //UI based functions
 
 } //class

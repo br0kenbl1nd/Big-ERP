@@ -5,9 +5,6 @@ public class BuyTube : MonoBehaviour
 {
     private GodownInventory godownInventory;
 
-    public Dropdown godownTubeSizeDropDownUI;
-    public InputField godownBuyTubeQtyUI;
-
     private void Awake()
     {
         godownInventory = GetComponent<GodownInventory>();

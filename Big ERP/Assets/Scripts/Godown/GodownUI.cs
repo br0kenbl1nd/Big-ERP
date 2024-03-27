@@ -19,13 +19,31 @@ public class GodownUI : MonoBehaviour
     public GameObject addTubeStockPopUp;
 
     [Header("Add new size tube stock")]
+    public AddNewTube addNewTube;
+
+    public InputField newTubeCodeInput;
+    public InputField newTubeSizeInput;
+    public InputField newTubeQtyInput;
+
+    private string newTubeCode;
+    private string newTubeSize;
+    private float newTubeQty;
+
     public GameObject addNewTubeSizePopUp;
 
     private void Start()
     {
         UpdateTubeSizeList();
+
+        //UI listeners for add tube stock
         godownTubeSizeDropDownUI.onValueChanged.AddListener(OnTubeSizeInput);
         godownBuyTubeQtyUI.onValueChanged.AddListener(OnTubeQtyInput);
+
+        //UI listeners for add new tube size
+        newTubeCodeInput.onValueChanged.AddListener(OnNewTubeCodeInput);
+        newTubeSizeInput.onValueChanged.AddListener(OnNewTubeSizeInput);
+        newTubeQtyInput.onValueChanged.AddListener(OnNewTubeQtyInput);
+
     }
 
     #region Add Tube stock 
@@ -37,7 +55,7 @@ public class GodownUI : MonoBehaviour
 
         list_of_tubes.Add("None");
 
-        foreach (EmptyTubeBP emptyTube in godownInventory.smallTubes)
+        foreach (EmptyTubeBP emptyTube in godownInventory.emptyTubes)
         {
             list_of_tubes.Add(emptyTube.CodeNo);
         }
@@ -61,6 +79,30 @@ public class GodownUI : MonoBehaviour
         buyTube.Buy_Tube(selectedTubeCode, selectedTubeQty);
         DisableAddTubeStockPopUp();
     } //add tube stock
+
+    #endregion
+
+    #region Add new Tube size
+
+    public void OnNewTubeCodeInput(string _value)
+    {
+        newTubeCode = _value;
+    }
+
+    public void OnNewTubeSizeInput(string _value)
+    {
+        newTubeSize = _value;
+    }
+
+    public void OnNewTubeQtyInput(string _value)
+    {
+        newTubeQty = float.Parse(_value);
+    }
+
+    public void AddNewTubeSize()
+    {
+        addNewTube.AddNewTubeSize(newTubeCode, newTubeSize, newTubeQty);
+    } //add new tube size
 
     #endregion
 
