@@ -23,8 +23,12 @@ public class GodownInventory : MonoBehaviour
     // add a new size of inner tube
     public void AddNewSizeTube(EmptyTubeBP _emptyTubeBP)
     {
-        emptyTubes.Add(_emptyTubeBP);
-        godownUI.UpdateTubeSizeList();
+        if(!CheckIfTubeSizeExists(_emptyTubeBP.Size))
+        {
+            emptyTubes.Add(_emptyTubeBP);
+            godownUI.UpdateTubeSizeList();
+        }
+        Debug.Log("Tube size already exists");
     } // Add new size small tube
 
 
@@ -85,6 +89,20 @@ public class GodownInventory : MonoBehaviour
             }
         }
     } // UpdateStock
+
+    bool CheckIfTubeSizeExists(string _size)
+    {
+        foreach(EmptyTubeBP _emptyTube in emptyTubes)
+        {
+            if(_size == _emptyTube.Size)
+            {
+                return true;
+            }
+        }
+
+        return false;
+
+    } //check if tube size exists
 
     #endregion
 

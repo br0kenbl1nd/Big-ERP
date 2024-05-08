@@ -18,7 +18,7 @@ public class GodownUI : MonoBehaviour
 
     public GameObject addTubeStockPopUp;
 
-    [Header("Add new size tube stock")]
+    [Header("Add new size tube")]
     public AddNewTube addNewTube;
 
     public InputField newTubeCodeInput;
@@ -102,6 +102,7 @@ public class GodownUI : MonoBehaviour
     public void AddNewTubeSize()
     {
         addNewTube.AddNewTubeSize(newTubeCode, newTubeSize, newTubeQty);
+        DisableAddNewTubeSizePopUp();
     } //add new tube size
 
     #endregion
